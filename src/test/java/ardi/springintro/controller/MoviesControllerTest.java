@@ -52,13 +52,13 @@ class MoviesControllerTest {
         mockResponse.setResponseCode(200);
 
         try {
-          FileInputStream fileInputStream = new FileInputStream("src/test/resource/jsonResponse/filmResponse.json");
+          FileInputStream fileInputStream = new FileInputStream("src/test/resources/jsonResponse/filmsResponse.json");
           String content = IOUtils.toString(fileInputStream, StandardCharsets.UTF_8.name());
           mockResponse.setBody(content);
         } catch (Exception e) {
-
+          System.out.println("ERRORRR" + e.getMessage());
         }
-        return null;
+        return mockResponse;
       }
     });
   }
@@ -97,7 +97,7 @@ class MoviesControllerTest {
 
     assertNotNull(response);
     assertTrue(response.size() > 0);
-    assertEquals(TESTING, response.get(0).getJudul());
+    assertEquals("Judul Film Pertama", response.get(0).getJudul());
   }
 
   @Test
