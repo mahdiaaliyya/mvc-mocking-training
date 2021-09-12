@@ -139,4 +139,17 @@ class MoviesControllerTest {
 
     assertNotNull(response);
   }
+
+  @Test
+  public void deleteMovieTest() {
+    Boolean response = client.delete()
+            .uri("/movies")
+            .exchange()
+            .expectStatus()
+            .isOk()
+            .expectBody(new ParameterizedTypeReference<Boolean>() {})
+            .returnResult()
+            .getResponseBody();
+
+    assertTrue(response);
 }
