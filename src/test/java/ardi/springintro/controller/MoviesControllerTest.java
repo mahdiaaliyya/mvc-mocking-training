@@ -71,7 +71,7 @@ class MoviesControllerTest {
   @BeforeEach
   public void setup() {
     Movie movie = new Movie();
-    movie.setJudul(TESTING);
+    movie.setTitle(TESTING);
     movie.setEpisode(1);
     client.post()
         .uri("/movies")
@@ -97,7 +97,7 @@ class MoviesControllerTest {
 
     assertNotNull(response);
     assertTrue(response.size() > 0);
-    assertEquals("Judul Film Pertama", response.get(0).getJudul());
+    assertEquals("Judul Film Pertama", response.get(0).getTitle());
   }
 
   @Test
@@ -147,9 +147,11 @@ class MoviesControllerTest {
             .exchange()
             .expectStatus()
             .isOk()
-            .expectBody(new ParameterizedTypeReference<Boolean>() {})
+            .expectBody(new ParameterizedTypeReference<Boolean>() {
+            })
             .returnResult()
             .getResponseBody();
 
     assertTrue(response);
+  }
 }

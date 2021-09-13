@@ -1,23 +1,23 @@
 package ardi.springintro.model;
 
 public class Movie {
-  String judul;
+  String title;
   int episode;
 
   public Movie() {
   }
 
-  public Movie(String judul, int episode) {
-    this.judul = judul;
+  public Movie(String title, int episode) {
+    this.title = title;
     this.episode = episode;
   }
 
-  public String getJudul() {
-    return judul;
+  public String getTitle() {
+    return title;
   }
 
-  public void setJudul(String judul) {
-    this.judul = judul;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   public int getEpisode() {

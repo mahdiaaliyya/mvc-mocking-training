@@ -2,8 +2,10 @@ package ardi.springintro;
 
 import ardi.springintro.model.SwapiConfig;
 import ardi.springintro.service.MovieProvider;
+import ardi.springintro.service.PeopleProvider;
 import ardi.springintro.service.SwapiClient;
 import ardi.springintro.service.impl.StarwarsMovie;
+import ardi.springintro.service.impl.StarwarsPeople;
 import ardi.springintro.service.impl.SwapiClientImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class BeanConfiguration {
+public class  BeanConfiguration {
 
     @Autowired
     SwapiClient swapiClient;
@@ -36,6 +38,11 @@ public class BeanConfiguration {
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .build();
         return client;
+    }
+
+    @Bean
+    public PeopleProvider starwarsPeople(){
+        return new StarwarsPeople(swapiClient);
     }
 
 }

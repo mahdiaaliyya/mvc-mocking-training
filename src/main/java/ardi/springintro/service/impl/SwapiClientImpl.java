@@ -1,6 +1,7 @@
 package ardi.springintro.service.impl;
 
 import ardi.springintro.model.SwapiFilm;
+import ardi.springintro.model.SwapiPeople;
 import ardi.springintro.model.SwapiResponse;
 import ardi.springintro.service.SwapiClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,33 @@ public class SwapiClientImpl implements SwapiClient {
         .bodyToMono(new ParameterizedTypeReference<SwapiResponse>() {})
         .block();
     return response.getResults();
+  }
+
+  @Override
+  public SwapiFilm getFilmsById(int index) {
+    return swapiWebClient.get()
+            .uri("/films/" + index)
+            .retrieve()
+            .bodyToMono(new ParameterizedTypeReference<SwapiFilm>() {})
+            .block();
+  }
+
+  @Override
+  public List<SwapiPeople> getPeople() {
+    SwapiResponse<SwapiPeople> response = swapiWebClient.get()
+            .uri("/people")
+            .retrieve()
+            .bodyToMono(new ParameterizedTypeReference<SwapiResponse<SwapiPeople>>() {})
+            .block();
+    return response.getResults();
+  }
+
+  @Override
+  public SwapiPeople getPeopleById(int id) {
+    return swapiWebClient.get()
+            .uri("/people/" + id)
+            .retrieve()
+            .bodyToMono(new ParameterizedTypeReference<SwapiPeople>() {})
+            .block();
   }
 }
